@@ -1,0 +1,40 @@
+
+<div fxLayout="row" fxLayoutAlign="center start" id="login" style="margin-top: 32px;">
+  <mat-card fxFlex.gt-sm="0 0 50%" fxFlex.gt-md="40" fxFlex="0 0 100%" fxLayout="column" fxLayoutAlign="start stretch">
+    <form *ngIf="loginForm" [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start stretch" id="project-name">
+      <div class="general-information-section" fxLayout="column" fxLayoutAlign="start stretch" style="margin: 24px">
+        <div class="title" fxFlexAlign="center" style="margin: 16px 16px 24px 16px">Log in and get to work</div>
+
+        <mat-form-field fxFlex="100" appearance="outline">
+          <mat-label for="email">Email</mat-label>
+          <input matInput name="email" formControlName="email" placeholder="Enter valid email" />
+          <mat-error *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">
+            <mat-error *ngIf="loginForm.controls.email.errors?.required"> Email Address is required </mat-error>
+            <mat-error *ngIf="loginForm.controls.email.errors?.pattern"> Email Address is not valid </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="100" appearance="outline">
+          <mat-label for="password">Password</mat-label>
+          <input matInput name="password" type="password" formControlName="password" placeholder="Enter password" />
+          <mat-error *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+            <mat-error *ngIf="loginForm.controls.password.errors?.required"> Password is required </mat-error>
+            <mat-error *ngIf="loginForm.controls.password.errors?.minlength"> Password must have 8 characters </mat-error>
+            <mat-error *ngIf="loginForm.controls.password.errors?.pattern"> Password Must have a Uppercase Letter and a Number </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="center center" style="margin: 8px">
+          <button
+            style="padding-left: 32px; padding-right: 32px"
+            mat-raised-button
+            color="warn"
+            (click)="onSubmit()"
+            [disabled]="loginForm.invalid"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

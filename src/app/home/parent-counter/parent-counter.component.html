@@ -1,0 +1,15 @@
+
+<div fxLayout="row" fxLayoutAlign="center start" id="parent-counter" style="margin-top: 32px;">
+  <mat-card fxFlex.gt-sm="0 0 50%" fxFlex.gt-md="40" fxFlex="0 0 100%" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="24px">
+    <h2>Parent Component</h2>
+    <div fxLayout="row" fxLayoutAlign="center stretch">
+      <button mat-stroked-button color="warn" (click)="decrease()"><mat-icon>remove</mat-icon></button>
+      <mat-form-field fxFlex="20" class="example-full-width" appearance="outline">
+        <input matInput  [(ngModel)]="counter" disabled style="text-align: center; font-size: 24px; font-weight: bold;">
+      </mat-form-field>
+      <button mat-stroked-button color="warn" (click)="increase()"><mat-icon>add</mat-icon></button>
+    </div>
+    <app-child-counter [counter]="counter" (emitCounterValue)="emitCounterValue($event)"></app-child-counter>
+    <app-child-with-service></app-child-with-service>
+  </mat-card>
+</div>
