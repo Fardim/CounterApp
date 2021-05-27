@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 })
 export class ParentCounterComponent implements OnInit {
   counter: number = 0;
+  counter2: number = 0;
   private _unsubscribeAll: Subject<any>;
   constructor(private counterService: CounterService) {
     this._unsubscribeAll = new Subject<any>();
@@ -23,7 +24,7 @@ export class ParentCounterComponent implements OnInit {
     this.counterService.counterObservable
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((resp: number) => {
-        this.counter = resp;
+        this.counter2 = resp;
       });
   }
 
@@ -32,6 +33,17 @@ export class ParentCounterComponent implements OnInit {
   }
   decrease() {
     this.counter--;
+  }
+  increase2() {
+    this.counter2++;
+    this.updateServiceCounter();
+  }
+  decrease2() {
+    this.counter2--;
+    this.updateServiceCounter();
+  }
+  updateServiceCounter() {
+    this.counterService.setCounter(this.counter2);
   }
   emitCounterValue(event: number) {
     this.counter = event;

@@ -1,5 +1,7 @@
+import { takeUntil } from 'rxjs/operators';
 import { CounterService } from './../counter.service';
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-child-with-service',
@@ -8,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChildWithServiceComponent implements OnInit {
   counter: number = 0;
-  constructor(private counterService: CounterService) {}
+  private _unsubscribeAll: Subject<any>;
+  constructor(private counterService: CounterService) {
+    this._unsubscribeAll = new Subject<any>();
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscribeToCounterSubject();
+  }
+
+  subscribeToCounterSubject() {
+    this.counterService.counterObservable
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((resp: number) => {
+        this.counter = resp;
+      });
+  }
+
   increase() {
     this.counter++;
     this.updateServiceCounter();

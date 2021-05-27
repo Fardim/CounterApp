@@ -8,7 +8,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-child-counter',
@@ -25,15 +24,6 @@ export class ChildCounterComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscribeToCounterSubject();
-  }
-
-  subscribeToCounterSubject() {
-    this.counterService.counterObservable
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((resp: number) => {
-        this.counter = resp;
-      });
   }
 
   increase() {
