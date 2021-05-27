@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CounterService {
-
   private counterSubject: Subject<number> = new Subject();
   counterObservable = this.counterSubject.asObservable();
 
-  constructor() { }
+  constructor() {}
 
   setCounter(value: number) {
     this.counterSubject.next(value);

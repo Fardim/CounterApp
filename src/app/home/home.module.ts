@@ -9,13 +9,11 @@ import { ChildCounterComponent } from './child-counter/child-counter.component';
 import { ChildWithServiceComponent } from './child-with-service/child-with-service.component';
 import { ParentCounterComponent } from './parent-counter/parent-counter.component';
 
-
-
 @NgModule({
   declarations: [
     ChildCounterComponent,
     ChildWithServiceComponent,
-    ParentCounterComponent
+    ParentCounterComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +23,6 @@ import { ParentCounterComponent } from './parent-counter/parent-counter.componen
     MaterialModule,
     FlexLayoutModule,
   ],
-  providers: [CounterService]
+  providers: [CounterService],
 })
-export class HomeModule { }
+export class HomeModule {}

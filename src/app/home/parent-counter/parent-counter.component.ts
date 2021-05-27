@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-parent-counter',
   templateUrl: './parent-counter.component.html',
-  styleUrls: ['./parent-counter.component.scss']
+  styleUrls: ['./parent-counter.component.scss'],
 })
 export class ParentCounterComponent implements OnInit {
   counter: number = 0;
@@ -20,9 +20,11 @@ export class ParentCounterComponent implements OnInit {
   }
 
   subscribeToCounterSubject() {
-    this.counterService.counterObservable.pipe(takeUntil(this._unsubscribeAll)).subscribe((resp: number) => {
-      this.counter = resp;
-    });
+    this.counterService.counterObservable
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((resp: number) => {
+        this.counter = resp;
+      });
   }
 
   increase() {
